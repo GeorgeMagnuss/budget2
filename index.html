@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Budget Calculator</title>
+</head>
+<body>
+    <h1>Annual Budget Calculator</h1>
+    <h2>Income</h2>
+    <label for="salary">Salary:</label>
+    <input type="number" id="salary" placeholder="Enter your salary"><br>
+
+    <!-- Add more income input fields as needed -->
+
+    <h2>Expenses</h2>
+    <label for="rent">Rent:</label>
+    <input type="number" id="rent" placeholder="Enter rent amount"><br>
+    <label for="rent">Subscription & Services</label>
+    <input type="number" id="Subscription & Services" placeholder="Enter amount"><br>
+    <label for="monthlyAllowance">Monthly Allowance:</label>
+    <input type="number" id="monthlyAllowance" placeholder="Enter monthly allowance amount"><br>
+    <label for="monthlySavings">Monthly Savings:</label>
+    <input type="number" id="monthlySavings" placeholder="Enter monthly savings amount"><br>
+
+    <!-- Add more expense input fields as needed -->
+
+    <button onclick="calculateBudget()">Calculate Budget</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateBudget() {
+            var salary = parseFloat(document.getElementById("salary").value) || 0;
+            // Add more income variables as needed
+            var rent = parseFloat(document.getElementById("rent").value) || 0;
+            var monthlyAllowance = parseFloat(document.getElementById("monthlyAllowance").value) || 0;
+            var monthlySavings = parseFloat(document.getElementById("monthlySavings").value) || 0;
+            var Subscriptions = parseFloat(document.getElementById("monthlySavings").value) || 0;
+            var totalIncome = salary; // Add other incomes here
+            var totalExpenses = rent + monthlyAllowance + monthlySavings + Subscriptions; // Add other expenses here
+            var monthlyLeftover = totalIncome - totalExpenses;
+            var annualLeftover = monthlyLeftover * 12; // Calculate annual leftover based on monthly leftover
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = "<h3>Annual Budget Analysis</h3>";
+            resultElement.innerHTML += "Total Income: ₪" + totalIncome.toFixed(2) + "<br>";
+            resultElement.innerHTML += "Total Expenses: ₪" + totalExpenses.toFixed(2) + "<br>";
+            resultElement.innerHTML += "Monthly Leftover: ₪" + monthlyLeftover.toFixed(2) + "<br>";
+            resultElement.innerHTML += "Annual Leftover: ₪" + annualLeftover.toFixed(2) + "<br>";
+            if (monthlyLeftover >= 0) {
+                resultElement.innerHTML += "<p style='color:green;'>You have leftover money each month. Good job!</p>";
+            } else {
+                resultElement.innerHTML += "<p style='color:red;'>You're spending more than you earn. Consider adjusting your budget.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
